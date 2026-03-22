@@ -9,6 +9,7 @@ TICKERS_FILE = os.path.join(BASE_DIR, "tickers.txt")
 
 os.makedirs(OUT_DIR, exist_ok=True)
 
+
 def safe_name(ticker: str) -> str:
     return (
         ticker.replace("^", "")
@@ -17,6 +18,37 @@ def safe_name(ticker: str) -> str:
         .replace("=", "_")
         .replace(".", "_")
     )
+
+
+def fmt_num(val, decimals=2):
+    if val in ("", None):
+        return ""
+    try:
+        return f"{float(val):.{decimals}f}"
+    except Exception:
+        return str(val)
+
+
+def fmt_millions(val):
+    if val in ("", None):
+        return ""
+    try:
+        return f"{float(val)/1_000_000:.1f}M"
+    except Exception:
+        return str(val)
+
+
+def ma200_position_text(close_val, ma200_val, pct_val):
+    if not close_val or not ma200_val or not pct_val:
+        return "数据不足，MA200未计算"
+    try:
+        pct = float(pct_val)
+        if pct >= 0:
+            return f"上方+{pct:.2f}%"
+        return f"下方{pct:.2f}%"
+    except Exception:
+        return "数据不足，MA200未计算"
+
 
 with open(TICKERS_FILE, "r", encoding="utf-8") as f:
     tickers = [line.strip() for line in f if line.strip()]
@@ -31,30 +63,90 @@ for ticker in tickers:
     with open(csv_path, newline="", encoding="utf-8") as f:
         rows = list(csv.reader(f))
 
-    if len(rows) < 3:
+    if len(rows) < 2:
         continue
 
-    rows = rows[1:]
-    latest = rows[-1]
-    prev = rows[-2]
+    header = rows[0]
+    data_rows = rows[1:]
+    latest = data_rows[-1]
+    row_map = dict(zip(header, latest))
 
-    date, open_, high, low, close, volume = latest
-    prev_close = float(prev[4])
-    close_f = float(close)
-    change = close_f - prev_close
-    pct = (change / prev_close) * 100 if prev_close else 0
+    prev = data_rows[-2] if len(data_rows) >= 2 else None
+    prev_close = None
+    if prev:
+        prev_map = dict(zip(header, prev))
+        try:
+            prev_close = float(prev_map.get("close", ""))
+        except Exception:
+            prev_close = None
+
+    try:
+        close_f = float(row_map.get("close", ""))
+    except Exception:
+        close_f = None
+
+    change = None
+    pct = None
+    if close_f is not None and prev_close not in (None, 0):
+        change = close_f - prev_close
+        pct = (change / prev_close) * 100
 
     with open(md_path, "w", encoding="utf-8") as out:
         out.write(f"# {ticker}\n\n")
-        out.write(f"Latest: {close_f:.2f}\n")
-        out.write(f"Change: {change:+.2f} ({pct:+.2f}%)\n")
-        out.write(f"Volume: {int(volume):,}\n\n")
-        out.write("---\n\n")
-        out.write("## Full Data (Newest First)\n\n")
-        out.write("| Date | Open | High | Low | Close | Volume |\n")
-        out.write("|------|------|------|-----|-------|--------|\n")
 
-        for row in reversed(rows):
-            if len(row) >= 6:
-                d, o, h, l, c, v = row[:6]
-                out.write(f"| {d} | {o} | {h} | {l} | {c} | {v} |\n")
+        out.write(f"Latest: {close_f:.2f}\n" if close_f is not None else "Latest: \n")
+        out.write(f"Change: {change:+.2f} ({pct:+.2f}%)\n" if change is not None and pct is not None else "Change: \n")
+        out.write(f"Volume: {fmt_millions(row_map.get('volume'))}\n\n")
+        out.write("---\n\n")
+
+        out.write("## 均线系统\n\n")
+        out.write(f"MA8：{fmt_num(row_map.get('ma8'))}\n")
+        out.write(f"MA21：{fmt_num(row_map.get('ma21'))}\n")
+        out.write(f"MA55：{fmt_num(row_map.get('ma55'))}\n")
+        out.write(f"MA200：{fmt_num(row_map.get('ma200'))}\n")
+        out.write(f"多头排列：{row_map.get('ma_state', '')}\n")
+        out.write(f"收盘在MA200：{ma200_position_text(row_map.get('close'), row_map.get('ma200'), row_map.get('close_vs_ma200_pct'))}\n\n")
+
+        out.write("## 技术指标\n\n")
+        out.write(f"RSI(14)：{fmt_num(row_map.get('rsi14'), 1)}\n")
+        out.write(f"ATR(14)：{fmt_num(row_map.get('atr14'))}\n\n")
+
+        out.write("## 成交量\n\n")
+        out.write(f"今日：{fmt_millions(row_map.get('volume'))}\n")
+        out.write(f"20日均量：{fmt_millions(row_map.get('vol20_avg'))}\n")
+        ratio = row_map.get("vol_ratio20")
+        if ratio not in ("", None):
+            try:
+                out.write(f"倍数：{float(ratio):.1f}倍\n\n")
+            except Exception:
+                out.write(f"倍数：{ratio}倍\n\n")
+        else:
+            out.write("倍数：\n\n")
+
+        out.write("## 数据验证\n\n")
+        start_date = row_map.get("ma200_start_date", "")
+        end_date = row_map.get("ma200_end_date", "")
+        window_count = row_map.get("ma200_window_count", "")
+        if start_date and end_date and window_count:
+            out.write(f"MA200计算窗口：{start_date} 至 {end_date}（共{window_count}交易日）\n")
+        else:
+            out.write("MA200计算窗口：数据不足，MA200未计算\n")
+        rsi_start = row_map.get("rsi_start_date", "")
+        if rsi_start:
+            out.write(f"RSI计算起始：{rsi_start}\n")
+        else:
+            out.write("RSI计算起始：数据不足，RSI未计算\n")
+        out.write(f"收盘价核对：{fmt_num(row_map.get('close_check'))}\n\n")
+
+        out.write("## Full Data (Newest First)\n\n")
+        out.write("| Date | Open | High | Low | Close | Volume | MA8 | MA21 | MA55 | MA200 | 多头排列 | 收盘在MA200 | RSI14 | ATR14 | 20日均量 | 量比 |\n")
+        out.write("|------|------|------|-----|-------|--------|-----|------|------|-------|----------|-------------|-------|-------|----------|------|\n")
+
+        for row in reversed(data_rows):
+            m = dict(zip(header, row))
+            pos_text = ma200_position_text(m.get("close"), m.get("ma200"), m.get("close_vs_ma200_pct"))
+            out.write(
+                f"| {m.get('date','')} | {m.get('open','')} | {m.get('high','')} | {m.get('low','')} | {m.get('close','')} | {m.get('volume','')} | "
+                f"{m.get('ma8','')} | {m.get('ma21','')} | {m.get('ma55','')} | {m.get('ma200','')} | {m.get('ma_state','')} | {pos_text} | "
+                f"{m.get('rsi14','')} | {m.get('atr14','')} | {m.get('vol20_avg','')} | {m.get('vol_ratio20','')} |\n"
+            )
