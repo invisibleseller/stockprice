@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout latest main
         uses: actions/checkout@v4
         with:
           ref: main
@@ -31,9 +31,10 @@ jobs:
       - name: Install dependencies
         run: pip install pandas yfinance
 
-      - name: Sync latest main
+      - name: Force sync to latest remote main
         run: |
           git fetch origin main
+          git checkout main
           git reset --hard origin/main
 
       - name: Run CSV update
@@ -42,11 +43,12 @@ jobs:
       - name: Generate MD files
         run: python scripts/generate_md.py
 
-      - name: Commit changes
+      - name: Commit and push changes
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add data/ md/
           git diff --cached --quiet && echo "no changes" && exit 0
           git commit -m "auto update all stocks and md"
-          git push origin HEAD:main
+          git pull --rebase origin main
+          git push origin main
