@@ -24,13 +24,16 @@ jobs:
       - name: Install dependencies
         run: pip install pandas yfinance
 
-      - name: Run update script
+      - name: Run CSV update
         run: python scripts/update_multi_stock.py
+
+      - name: Generate MD files
+        run: python scripts/generate_md.py
 
       - name: Commit changes
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add data/
-          git commit -m "auto update all stocks" || echo "no changes"
+          git add data/ md/
+          git commit -m "auto update all stocks and md" || echo "no changes"
           git push
