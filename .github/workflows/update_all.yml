@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: update-all-stocks-main
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -27,6 +31,11 @@ jobs:
       - name: Install dependencies
         run: pip install pandas yfinance
 
+      - name: Sync latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
       - name: Run CSV update
         run: python scripts/update_multi_stock.py
 
@@ -38,6 +47,6 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add data/ md/
-          git commit -m "auto update all stocks and md" || echo "no changes"
-          git pull --rebase origin main
-          git push origin main
+          git diff --cached --quiet && echo "no changes" && exit 0
+          git commit -m "auto update all stocks and md"
+          git push origin HEAD:main
