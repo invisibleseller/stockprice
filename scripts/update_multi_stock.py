@@ -3,11 +3,13 @@ from datetime import datetime, timedelta
 import pandas as pd
 import yfinance as yf
 
-BASE_DIR = os.path.expanduser("~/Documents/stockprice")
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(SCRIPT_DIR)
 DATA_DIR = os.path.join(BASE_DIR, "data")
 TICKERS_FILE = os.path.join(BASE_DIR, "tickers.txt")
 
 os.makedirs(DATA_DIR, exist_ok=True)
+
 
 def safe_name(ticker: str) -> str:
     return (
@@ -18,27 +20,33 @@ def safe_name(ticker: str) -> str:
         .replace(".", "_")
     )
 
+
 def normalize_columns(df: pd.DataFrame) -> pd.DataFrame:
     if isinstance(df.columns, pd.MultiIndex):
         df.columns = [c[0] if isinstance(c, tuple) else c for c in df.columns]
     return df
 
+
 def load_tickers():
     with open(TICKERS_FILE, "r", encoding="utf-8") as f:
         return [line.strip() for line in f if line.strip()]
+
 
 def clean_frame(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     df["date"] = pd.to_datetime(df["date"], errors="coerce")
     df = df[df["date"].notna()]
+
     for col in ["open", "high", "low", "close", "volume"]:
         df[col] = pd.to_numeric(df[col], errors="coerce")
+
     df = df.dropna(subset=["open", "high", "low", "close", "volume"])
     df["date"] = df["date"].dt.strftime("%Y-%m-%d")
     df[["open", "high", "low", "close"]] = df[["open", "high", "low", "close"]].round(2)
     df["volume"] = df["volume"].round(0).astype("int64")
     df = df.drop_duplicates(subset=["date"]).sort_values("date")
     return df[["date", "open", "high", "low", "close", "volume"]]
+
 
 def update_one_ticker(ticker: str) -> None:
     end = datetime.today()
@@ -81,9 +89,11 @@ def update_one_ticker(ticker: str) -> None:
     df.to_csv(file_path, index=False)
     print(f"Saved {file_path}")
 
+
 def main() -> None:
     for ticker in load_tickers():
         update_one_ticker(ticker)
+
 
 if __name__ == "__main__":
     main()
