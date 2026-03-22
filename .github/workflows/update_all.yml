@@ -2,8 +2,11 @@ name: Update All Stocks
 
 on:
   schedule:
-    - cron: '0 22 * * *'   # UTC 22:00 = 温哥华 15:00（收盘后）
+    - cron: '0 22 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   update:
