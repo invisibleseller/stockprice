@@ -96,64 +96,78 @@ def wilder_atr(high: pd.Series, low: pd.Series, close: pd.Series, period: int = 
     return atr
 
 
-def ma_state(close: float, ma8: float, ma21: float, ma55: float, ma200: float) -> str:
-    values = [close, ma8, ma21, ma55, ma200]
+def ema_state(close: float, ema8: float, ema21: float, ema55: float, ema200: float) -> str:
+    values = [close, ema8, ema21, ema55, ema200]
     if any(pd.isna(v) for v in values):
         return "混合"
-    if close > ma8 > ma21 > ma55 > ma200:
+    if close > ema8 > ema21 > ema55 > ema200:
         return "完整多头"
-    if ma21 > ma55 and close > ma21 and close < ma200:
+    if ema21 > ema55 and close > ema21 and close < ema200:
         return "部分多头"
-    if close < ma8 < ma21 < ma55 < ma200:
+    if close < ema8 < ema21 < ema55 < ema200:
         return "空头排列"
     return "混合"
 
 
 def add_indicators(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
-    df["ma8"] = df["close"].rolling(8).mean()
-    df["ma21"] = df["close"].rolling(21).mean()
-    df["ma55"] = df["close"].rolling(55).mean()
-    df["ma200"] = df["close"].rolling(200).mean()
 
+    # SMA
+    df["sma8"] = df["close"].rolling(8).mean()
+    df["sma21"] = df["close"].rolling(21).mean()
+    df["sma55"] = df["close"].rolling(55).mean()
+    df["sma200"] = df["close"].rolling(200).mean()
+
+    # EMA (Futu alignment)
+    df["ema8"] = df["close"].ewm(span=8, adjust=False).mean()
+    df["ema21"] = df["close"].ewm(span=21, adjust=False).mean()
+    df["ema55"] = df["close"].ewm(span=55, adjust=False).mean()
+    df["ema200"] = df["close"].ewm(span=200, adjust=False).mean()
+
+    # RSI / ATR
     df["rsi14"] = wilder_rsi(df["close"], 14)
     df["atr14"] = wilder_atr(df["high"], df["low"], df["close"], 14)
 
+    # Volume
     df["vol20_avg"] = df["volume"].rolling(20).mean()
     df["vol_ratio20"] = df["volume"] / df["vol20_avg"]
 
-    df["ma_state"] = [
-        ma_state(c, m8, m21, m55, m200)
-        for c, m8, m21, m55, m200 in zip(df["close"], df["ma8"], df["ma21"], df["ma55"], df["ma200"])
+    # EMA state
+    df["ema_state"] = [
+        ema_state(c, e8, e21, e55, e200)
+        for c, e8, e21, e55, e200 in zip(df["close"], df["ema8"], df["ema21"], df["ema55"], df["ema200"])
     ]
 
-    df["close_vs_ma200_pct"] = ((df["close"] - df["ma200"]) / df["ma200"]) * 100
+    # Distances
+    df["close_vs_ema200_pct"] = ((df["close"] - df["ema200"]) / df["ema200"]) * 100
+    df["close_vs_sma200_pct"] = ((df["close"] - df["sma200"]) / df["sma200"]) * 100
 
-    ma200_start_dates = []
-    ma200_end_dates = []
-    ma200_counts = []
+    # Validation fields
+    sma200_start_dates = []
+    sma200_end_dates = []
+    sma200_counts = []
     rsi_start_dates = []
 
     dates = list(df["date"])
 
     for i in range(len(df)):
         if i >= 199:
-            ma200_start_dates.append(dates[i - 199])
-            ma200_end_dates.append(dates[i])
-            ma200_counts.append(200)
+            sma200_start_dates.append(dates[i - 199])
+            sma200_end_dates.append(dates[i])
+            sma200_counts.append(200)
         else:
-            ma200_start_dates.append(pd.NA)
-            ma200_end_dates.append(pd.NA)
-            ma200_counts.append(pd.NA)
+            sma200_start_dates.append(pd.NA)
+            sma200_end_dates.append(pd.NA)
+            sma200_counts.append(pd.NA)
 
         if i >= 14:
             rsi_start_dates.append(dates[1])
         else:
             rsi_start_dates.append(pd.NA)
 
-    df["ma200_start_date"] = ma200_start_dates
-    df["ma200_end_date"] = ma200_end_dates
-    df["ma200_window_count"] = ma200_counts
+    df["sma200_start_date"] = sma200_start_dates
+    df["sma200_end_date"] = sma200_end_dates
+    df["sma200_window_count"] = sma200_counts
     df["rsi_start_date"] = rsi_start_dates
     df["close_check"] = df["close"]
 
@@ -167,23 +181,31 @@ def clean_frame(df: pd.DataFrame) -> pd.DataFrame:
 
     numeric_cols = [
         "open", "high", "low", "close", "volume",
-        "ma8", "ma21", "ma55", "ma200",
-        "close_vs_ma200_pct", "rsi14", "atr14",
-        "vol20_avg", "vol_ratio20", "close_check"
+        "sma8", "sma21", "sma55", "sma200",
+        "ema8", "ema21", "ema55", "ema200",
+        "close_vs_ema200_pct", "close_vs_sma200_pct",
+        "rsi14", "atr14",
+        "vol20_avg", "vol_ratio20",
+        "close_check"
     ]
     for col in numeric_cols:
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors="coerce")
 
-    if "ma200_window_count" in df.columns:
-        df["ma200_window_count"] = pd.to_numeric(df["ma200_window_count"], errors="coerce")
+    if "sma200_window_count" in df.columns:
+        df["sma200_window_count"] = pd.to_numeric(df["sma200_window_count"], errors="coerce")
 
     df = df.dropna(subset=["open", "high", "low", "close", "volume"])
     df = df.drop_duplicates(subset=["date"]).sort_values("date")
     df["date"] = df["date"].dt.strftime("%Y-%m-%d")
 
-    price_cols = ["open", "high", "low", "close", "ma8", "ma21", "ma55", "ma200", "atr14", "close_check"]
-    pct_cols = ["close_vs_ma200_pct"]
+    price_cols = [
+        "open", "high", "low", "close",
+        "sma8", "sma21", "sma55", "sma200",
+        "ema8", "ema21", "ema55", "ema200",
+        "atr14", "close_check"
+    ]
+    pct_cols = ["close_vs_ema200_pct", "close_vs_sma200_pct"]
     one_dec_cols = ["rsi14", "vol_ratio20"]
     vol_avg_cols = ["vol20_avg"]
 
@@ -204,11 +226,12 @@ def clean_frame(df: pd.DataFrame) -> pd.DataFrame:
 
     ordered_cols = [
         "date", "open", "high", "low", "close", "volume",
-        "ma8", "ma21", "ma55", "ma200",
-        "ma_state", "close_vs_ma200_pct",
+        "sma8", "sma21", "sma55", "sma200",
+        "ema8", "ema21", "ema55", "ema200",
+        "ema_state", "close_vs_ema200_pct", "close_vs_sma200_pct",
         "rsi14", "atr14",
         "vol20_avg", "vol_ratio20",
-        "ma200_start_date", "ma200_end_date", "ma200_window_count",
+        "sma200_start_date", "sma200_end_date", "sma200_window_count",
         "rsi_start_date", "close_check"
     ]
     existing_cols = [c for c in ordered_cols if c in df.columns]

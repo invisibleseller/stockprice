@@ -38,16 +38,16 @@ def fmt_millions(val):
         return str(val)
 
 
-def ma200_position_text(close_val, ma200_val, pct_val):
-    if not close_val or not ma200_val or not pct_val:
-        return "数据不足，MA200未计算"
+def position_text(val):
+    if val in ("", None):
+        return "数据不足"
     try:
-        pct = float(pct_val)
+        pct = float(val)
         if pct >= 0:
             return f"上方+{pct:.2f}%"
         return f"下方{pct:.2f}%"
     except Exception:
-        return "数据不足，MA200未计算"
+        return "数据不足"
 
 
 with open(TICKERS_FILE, "r", encoding="utf-8") as f:
@@ -93,19 +93,23 @@ for ticker in tickers:
 
     with open(md_path, "w", encoding="utf-8") as out:
         out.write(f"# {ticker}\n\n")
-
         out.write(f"Latest: {close_f:.2f}\n" if close_f is not None else "Latest: \n")
         out.write(f"Change: {change:+.2f} ({pct:+.2f}%)\n" if change is not None and pct is not None else "Change: \n")
         out.write(f"Volume: {fmt_millions(row_map.get('volume'))}\n\n")
         out.write("---\n\n")
 
         out.write("## 均线系统\n\n")
-        out.write(f"MA8：{fmt_num(row_map.get('ma8'))}\n")
-        out.write(f"MA21：{fmt_num(row_map.get('ma21'))}\n")
-        out.write(f"MA55：{fmt_num(row_map.get('ma55'))}\n")
-        out.write(f"MA200：{fmt_num(row_map.get('ma200'))}\n")
-        out.write(f"多头排列：{row_map.get('ma_state', '')}\n")
-        out.write(f"收盘在MA200：{ma200_position_text(row_map.get('close'), row_map.get('ma200'), row_map.get('close_vs_ma200_pct'))}\n\n")
+        out.write(f"EMA8：{fmt_num(row_map.get('ema8'))}\n")
+        out.write(f"EMA21：{fmt_num(row_map.get('ema21'))}\n")
+        out.write(f"EMA55：{fmt_num(row_map.get('ema55'))}\n")
+        out.write(f"EMA200：{fmt_num(row_map.get('ema200'))}\n")
+        out.write(f"SMA8：{fmt_num(row_map.get('sma8'))}\n")
+        out.write(f"SMA21：{fmt_num(row_map.get('sma21'))}\n")
+        out.write(f"SMA55：{fmt_num(row_map.get('sma55'))}\n")
+        out.write(f"SMA200：{fmt_num(row_map.get('sma200'))}\n")
+        out.write(f"多头排列：{row_map.get('ema_state', '')}\n")
+        out.write(f"收盘在EMA200：{position_text(row_map.get('close_vs_ema200_pct'))}\n")
+        out.write(f"SMA200趋势参考：{position_text(row_map.get('close_vs_sma200_pct'))}\n\n")
 
         out.write("## 技术指标\n\n")
         out.write(f"RSI(14)：{fmt_num(row_map.get('rsi14'), 1)}\n")
@@ -124,13 +128,13 @@ for ticker in tickers:
             out.write("倍数：\n\n")
 
         out.write("## 数据验证\n\n")
-        start_date = row_map.get("ma200_start_date", "")
-        end_date = row_map.get("ma200_end_date", "")
-        window_count = row_map.get("ma200_window_count", "")
+        start_date = row_map.get("sma200_start_date", "")
+        end_date = row_map.get("sma200_end_date", "")
+        window_count = row_map.get("sma200_window_count", "")
         if start_date and end_date and window_count:
-            out.write(f"MA200计算窗口：{start_date} 至 {end_date}（共{window_count}交易日）\n")
+            out.write(f"SMA200计算窗口：{start_date} 至 {end_date}（共{window_count}交易日）\n")
         else:
-            out.write("MA200计算窗口：数据不足，MA200未计算\n")
+            out.write("SMA200计算窗口：数据不足，SMA200未计算\n")
         rsi_start = row_map.get("rsi_start_date", "")
         if rsi_start:
             out.write(f"RSI计算起始：{rsi_start}\n")
@@ -139,14 +143,15 @@ for ticker in tickers:
         out.write(f"收盘价核对：{fmt_num(row_map.get('close_check'))}\n\n")
 
         out.write("## Full Data (Newest First)\n\n")
-        out.write("| Date | Open | High | Low | Close | Volume | MA8 | MA21 | MA55 | MA200 | 多头排列 | 收盘在MA200 | RSI14 | ATR14 | 20日均量 | 量比 |\n")
-        out.write("|------|------|------|-----|-------|--------|-----|------|------|-------|----------|-------------|-------|-------|----------|------|\n")
+        out.write("| Date | Open | High | Low | Close | Volume | EMA8 | EMA21 | EMA55 | EMA200 | SMA8 | SMA21 | SMA55 | SMA200 | 多头排列 | 收盘在EMA200 | SMA200参考 | RSI14 | ATR14 | 20日均量 | 量比 |\n")
+        out.write("|------|------|------|-----|-------|--------|------|-------|-------|--------|------|-------|-------|--------|----------|-------------|------------|-------|-------|----------|------|\n")
 
         for row in reversed(data_rows):
             m = dict(zip(header, row))
-            pos_text = ma200_position_text(m.get("close"), m.get("ma200"), m.get("close_vs_ma200_pct"))
             out.write(
                 f"| {m.get('date','')} | {m.get('open','')} | {m.get('high','')} | {m.get('low','')} | {m.get('close','')} | {m.get('volume','')} | "
-                f"{m.get('ma8','')} | {m.get('ma21','')} | {m.get('ma55','')} | {m.get('ma200','')} | {m.get('ma_state','')} | {pos_text} | "
+                f"{m.get('ema8','')} | {m.get('ema21','')} | {m.get('ema55','')} | {m.get('ema200','')} | "
+                f"{m.get('sma8','')} | {m.get('sma21','')} | {m.get('sma55','')} | {m.get('sma200','')} | "
+                f"{m.get('ema_state','')} | {position_text(m.get('close_vs_ema200_pct'))} | {position_text(m.get('close_vs_sma200_pct'))} | "
                 f"{m.get('rsi14','')} | {m.get('atr14','')} | {m.get('vol20_avg','')} | {m.get('vol_ratio20','')} |\n"
             )
