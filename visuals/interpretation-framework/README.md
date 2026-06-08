@@ -1,5 +1,10 @@
 # 解读与情绪课程视觉框架
 
+
+## 如果图片还是看不见
+
+打开 [`ALWAYS_VISIBLE_PREVIEW.md`](./ALWAYS_VISIBLE_PREVIEW.md)。这是纯文字框架版，不依赖 SVG、HTML、图片渲染或外部网站；只要能看到文字，就能看到图的结构。
+
 ## iPad / 手机直接看图
 
 如果你在 iPad 上点开 `.svg`、`.html` 或 `.md` 看到源码，直接打开 [`IPAD_PREVIEW.md`](./IPAD_PREVIEW.md)。这个文件里放的是在线渲染后的图片链接，点开就能直接看图，不需要下载或安装软件。
