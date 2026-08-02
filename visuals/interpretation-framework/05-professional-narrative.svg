@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+<title id="title">解读与情绪：先分层看见解读，再进入选择空间</title>
+<desc id="desc">一张专业暗色辉光风格课程总图，先呈现事实层、解读层、情绪层，再呈现事实到自动解读、情绪、暂停、其他可能、情绪松动的流程。</desc>
+<defs>
+  <radialGradient id="bgA" cx="18%" cy="12%" r="55%"><stop offset="0" stop-color="#7C3AED" stop-opacity="0.42"/><stop offset="0.5" stop-color="#172554" stop-opacity="0.38"/><stop offset="1" stop-color="#050816" stop-opacity="0"/></radialGradient>
+  <radialGradient id="bgB" cx="88%" cy="22%" r="55%"><stop offset="0" stop-color="#06B6D4" stop-opacity="0.36"/><stop offset="0.52" stop-color="#1D4ED8" stop-opacity="0.22"/><stop offset="1" stop-color="#050816" stop-opacity="0"/></radialGradient>
+  <radialGradient id="bgC" cx="50%" cy="95%" r="60%"><stop offset="0" stop-color="#F59E0B" stop-opacity="0.2"/><stop offset="1" stop-color="#050816" stop-opacity="0"/></radialGradient>
+  <linearGradient id="heroStroke" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22D3EE"/><stop offset="0.48" stop-color="#A78BFA"/><stop offset="1" stop-color="#F472B6"/></linearGradient>
+  <linearGradient id="layerEmotion" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FB7185"/><stop offset="1" stop-color="#F97316"/></linearGradient>
+  <linearGradient id="layerMeaning" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FBBF24"/><stop offset="1" stop-color="#A78BFA"/></linearGradient>
+  <linearGradient id="layerFact" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#38BDF8"/><stop offset="1" stop-color="#22C55E"/></linearGradient>
+  <linearGradient id="pauseFill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0E7490" stop-opacity="0.94"/><stop offset="1" stop-color="#6D28D9" stop-opacity="0.9"/></linearGradient>
+  <filter id="softShadow" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="20" stdDeviation="18" flood-color="#000000" flood-opacity="0.34"/></filter>
+  <filter id="cyanGlow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="8" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="bigGlow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="18" result="blur"/><feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.19 0 0 0 0 0.82 0 0 0 0 1 0 0 0 0.65 0"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <marker id="arrowGlow" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M 1 1 L 11 6 L 1 11 Z" fill="#67E8F9"/></marker>
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', sans-serif; dominant-baseline: middle; }
+    .eyebrow { font-size: 18px; font-weight: 800; letter-spacing: .2em; fill: #93C5FD; }
+    .title { font-size: 48px; font-weight: 900; letter-spacing: -0.03em; fill: #F8FAFC; }
+    .subtitle { font-size: 22px; font-weight: 600; fill: #CBD5E1; }
+    .section-title { font-size: 27px; font-weight: 900; fill: #F8FAFC; }
+    .section-sub { font-size: 17px; font-weight: 650; fill: #94A3B8; }
+    .card-title { font-size: 24px; font-weight: 900; fill: #FFFFFF; }
+    .card-body { font-size: 19px; font-weight: 650; fill: #DDE7F8; }
+    .card-muted { font-size: 16px; font-weight: 650; fill: #9FB0C9; }
+    .step-title { font-size: 20px; font-weight: 900; fill: #FFFFFF; }
+    .step-body { font-size: 17px; font-weight: 650; fill: #D6E4FF; }
+    .chip { font-size: 18px; font-weight: 850; fill: #FFFFFF; }
+    .tiny { font-size: 14px; font-weight: 800; fill: #93C5FD; letter-spacing: .08em; }
+  </style>
+</defs>
+
+<rect width="1600" height="1000" fill="#050816"/>
+<rect width="1600" height="1000" fill="url(#bgA)"/>
+<rect width="1600" height="1000" fill="url(#bgB)"/>
+<rect width="1600" height="1000" fill="url(#bgC)"/>
+<g opacity="0.28">
+  <path d="M0 210 C240 120 370 300 620 195 C870 90 1030 160 1600 70" stroke="#38BDF8" stroke-width="1.4" fill="none"/>
+  <path d="M0 790 C270 670 450 820 705 715 C960 610 1140 740 1600 610" stroke="#A78BFA" stroke-width="1.2" fill="none"/>
+  <path d="M180 0 V1000 M420 0 V1000 M660 0 V1000 M900 0 V1000 M1140 0 V1000 M1380 0 V1000" stroke="#334155" stroke-width="1"/>
+  <path d="M0 160 H1600 M0 360 H1600 M0 560 H1600 M0 760 H1600" stroke="#334155" stroke-width="1"/>
+</g>
+
+<text x="92" y="72" class="eyebrow">COURSE FRAMEWORK / INTERPRETATION</text>
+<text x="92" y="126" class="title">先看见解读，再打开选择空间</text>
+<text x="92" y="173" class="subtitle">叙事顺序：方案三分层理解 → 方案一进入行动流程。内容保持原样，视觉升级为 Figma / Premiere 风格辉光总图。</text>
+
+<rect x="70" y="220" width="690" height="690" rx="38" fill="#0F172A" fill-opacity="0.72" stroke="url(#heroStroke)" stroke-width="2.2" filter="url(#softShadow)"/>
+<rect x="92" y="242" width="646" height="646" rx="30" fill="#FFFFFF" fill-opacity="0.045" stroke="#FFFFFF" stroke-opacity="0.12"/>
+<text x="120" y="286" class="tiny">01 / 先分层</text>
+<text x="120" y="326" class="section-title">方案三｜事实层 / 解读层 / 情绪层</text>
+<text x="120" y="360" class="section-sub">先让学员分清：我是在回应事实，还是回应自己的解读？</text>
+
+<g filter="url(#softShadow)">
+  <rect x="130" y="410" width="570" height="116" rx="28" fill="#1E1B4B" fill-opacity="0.72" stroke="#FB7185" stroke-width="2"/>
+  <rect x="130" y="410" width="10" height="116" rx="5" fill="url(#layerEmotion)" filter="url(#cyanGlow)"/>
+  <circle cx="177" cy="468" r="23" fill="#FB7185" fill-opacity="0.16" stroke="#FB7185"/>
+  <text x="177" y="468" text-anchor="middle" class="chip">情</text>
+  <text x="225" y="446" class="card-title">情绪层</text>
+  <text x="225" y="482" class="card-body">我现在的感受</text>
+  <text x="225" y="510" class="card-muted">愤怒 / 委屈 / 失落 / 防御</text>
+
+  <rect x="130" y="555" width="570" height="132" rx="28" fill="#2E1065" fill-opacity="0.66" stroke="#FBBF24" stroke-width="2"/>
+  <rect x="130" y="555" width="10" height="132" rx="5" fill="url(#layerMeaning)" filter="url(#cyanGlow)"/>
+  <circle cx="177" cy="621" r="23" fill="#FBBF24" fill-opacity="0.16" stroke="#FBBF24"/>
+  <text x="177" y="621" text-anchor="middle" class="chip">解</text>
+  <text x="225" y="593" class="card-title">解读层</text>
+  <text x="225" y="629" class="card-body">我认为这件事意味着什么</text>
+  <text x="225" y="658" class="card-muted">不尊重我 / 不在乎这个家 / 我孩子不行 / 他是故意的</text>
+
+  <rect x="130" y="716" width="570" height="116" rx="28" fill="#082F49" fill-opacity="0.72" stroke="#38BDF8" stroke-width="2"/>
+  <rect x="130" y="716" width="10" height="116" rx="5" fill="url(#layerFact)" filter="url(#cyanGlow)"/>
+  <circle cx="177" cy="774" r="23" fill="#38BDF8" fill-opacity="0.16" stroke="#38BDF8"/>
+  <text x="177" y="774" text-anchor="middle" class="chip">事</text>
+  <text x="225" y="752" class="card-title">事实层</text>
+  <text x="225" y="788" class="card-body">真实发生了什么</text>
+  <text x="225" y="816" class="card-muted">孩子没回应 / 伴侣晚归 / 老师反馈 / 孩子哭闹</text>
+</g>
+<path d="M414 712 V693" stroke="#FBBF24" stroke-width="4" marker-end="url(#arrowGlow)" filter="url(#cyanGlow)"/>
+<path d="M414 551 V532" stroke="#FB7185" stroke-width="4" marker-end="url(#arrowGlow)" filter="url(#cyanGlow)"/>
+<rect x="158" y="856" width="514" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.08" stroke="#67E8F9" stroke-opacity="0.42"/>
+<text x="415" y="879" text-anchor="middle" font-size="18" font-weight="850" fill="#E0F2FE">关键问题：这是事实，还是我对事实的解读？</text>
+
+<path d="M778 565 C822 565 840 565 880 565" stroke="#67E8F9" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowGlow)" filter="url(#bigGlow)"/>
+<text x="830" y="526" text-anchor="middle" font-size="18" font-weight="900" fill="#67E8F9">看见中间层</text>
+
+<rect x="890" y="220" width="640" height="690" rx="38" fill="#0B1120" fill-opacity="0.76" stroke="url(#heroStroke)" stroke-width="2.2" filter="url(#softShadow)"/>
+<rect x="912" y="242" width="596" height="646" rx="30" fill="#FFFFFF" fill-opacity="0.045" stroke="#FFFFFF" stroke-opacity="0.12"/>
+<text x="940" y="286" class="tiny">02 / 再选择</text>
+<text x="940" y="326" class="section-title">方案一｜事实 → 解读 → 情绪 → 选择空间</text>
+<text x="940" y="360" class="section-sub">把看见的“解读”放进流程里，情绪就不再只有一条路。</text>
+
+<g filter="url(#softShadow)">
+  <rect x="960" y="405" width="205" height="78" rx="22" fill="#0F172A" stroke="#38BDF8" stroke-opacity="0.85" stroke-width="2"/>
+  <text x="1062" y="428" text-anchor="middle" class="step-title">① 事实发生</text>
+  <text x="1062" y="459" text-anchor="middle" class="step-body">婆婆说出去玩玩</text>
+
+  <rect x="1210" y="405" width="205" height="78" rx="22" fill="#2A174A" stroke="#FBBF24" stroke-opacity="0.9" stroke-width="2"/>
+  <text x="1312" y="428" text-anchor="middle" class="step-title">② 自动解读</text>
+  <text x="1312" y="459" text-anchor="middle" class="step-body">她是不是嫌弃我？</text>
+
+  <rect x="960" y="525" width="205" height="78" rx="22" fill="#3B1024" stroke="#FB7185" stroke-opacity="0.9" stroke-width="2"/>
+  <text x="1062" y="548" text-anchor="middle" class="step-title">③ 情绪产生</text>
+  <text x="1062" y="579" text-anchor="middle" class="step-body">委屈 / 生气 / 防御</text>
+
+  <rect x="1210" y="525" width="205" height="78" rx="22" fill="#351634" stroke="#F472B6" stroke-opacity="0.9" stroke-width="2"/>
+  <text x="1312" y="548" text-anchor="middle" class="step-title">④ 被情绪带走</text>
+  <text x="1312" y="579" text-anchor="middle" class="step-body">冷淡 / 反击 / 生闷气</text>
+</g>
+<path d="M1168 444 H1202" stroke="#67E8F9" stroke-width="3" marker-end="url(#arrowGlow)" filter="url(#cyanGlow)"/>
+<path d="M1312 488 V516" stroke="#67E8F9" stroke-width="3" marker-end="url(#arrowGlow)" filter="url(#cyanGlow)"/>
+<path d="M1208 564 H1172" stroke="#67E8F9" stroke-width="3" marker-end="url(#arrowGlow)" filter="url(#cyanGlow)"/>
+
+<rect x="990" y="642" width="396" height="92" rx="30" fill="url(#pauseFill)" stroke="#67E8F9" stroke-width="2.4" filter="url(#bigGlow)"/>
+<text x="1188" y="674" text-anchor="middle" font-size="25" font-weight="950" fill="#FFFFFF">暂停：这是事实，还是我的一种解读？</text>
+<text x="1188" y="709" text-anchor="middle" font-size="18" font-weight="750" fill="#E0F2FE">看见它只是“解读”，选择空间就出现了</text>
+<path d="M1062 608 C1062 636 1085 642 1110 642" stroke="#67E8F9" stroke-width="3" fill="none" marker-end="url(#arrowGlow)" filter="url(#cyanGlow)"/>
+
+<g filter="url(#softShadow)">
+  <rect x="940" y="780" width="175" height="82" rx="22" fill="#052E2B" stroke="#22C55E" stroke-width="2"/>
+  <text x="1028" y="803" text-anchor="middle" class="step-title">可能 A</text>
+  <text x="1028" y="829" text-anchor="middle" class="step-body">她在关心我</text>
+  <text x="1028" y="851" text-anchor="middle" font-size="16" font-weight="850" fill="#86EFAC">→ 温暖</text>
+
+  <rect x="1150" y="780" width="175" height="82" rx="22" fill="#052E2B" stroke="#22C55E" stroke-width="2"/>
+  <text x="1238" y="803" text-anchor="middle" class="step-title">可能 B</text>
+  <text x="1238" y="829" text-anchor="middle" class="step-body">她想让我放松</text>
+  <text x="1238" y="851" text-anchor="middle" font-size="16" font-weight="850" fill="#86EFAC">→ 轻松</text>
+
+  <rect x="1360" y="780" width="130" height="82" rx="22" fill="#052E2B" stroke="#22C55E" stroke-width="2"/>
+  <text x="1425" y="803" text-anchor="middle" class="step-title">可能 C</text>
+  <text x="1425" y="829" text-anchor="middle" font-size="15" font-weight="750" fill="#D6E4FF">表达方式不好</text>
+  <text x="1425" y="851" text-anchor="middle" font-size="16" font-weight="850" fill="#86EFAC">→ 没那么受伤</text>
+</g>
+<path d="M1100 736 L1028 772" stroke="#22C55E" stroke-width="3" fill="none" marker-end="url(#arrowGlow)" filter="url(#cyanGlow)"/>
+<path d="M1188 736 L1238 772" stroke="#22C55E" stroke-width="3" fill="none" marker-end="url(#arrowGlow)" filter="url(#cyanGlow)"/>
+<path d="M1288 736 L1425 772" stroke="#22C55E" stroke-width="3" fill="none" marker-end="url(#arrowGlow)" filter="url(#cyanGlow)"/>
+
+<rect x="538" y="924" width="524" height="46" rx="23" fill="#0F172A" fill-opacity="0.78" stroke="#22D3EE" stroke-opacity="0.55" filter="url(#cyanGlow)"/>
+<text x="800" y="947" text-anchor="middle" font-size="20" font-weight="900" fill="#E0F2FE">课程主线：找到“解读层” → 暂停 → 尝试其他可能 → 情绪松动</text>
+</svg>
