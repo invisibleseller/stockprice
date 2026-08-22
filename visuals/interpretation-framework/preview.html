@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>解读与情绪课程视觉框架预览</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f3ea;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #06b6d4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, #fffaf0 0%, var(--bg) 48%, #eef8ff 100%);
+    }
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 40px 0 64px;
+    }
+    header {
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.04em;
+    }
+    .intro {
+      margin: 0 auto;
+      max-width: 820px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+    .notice {
+      margin: 24px auto 0;
+      max-width: 900px;
+      padding: 16px 20px;
+      border: 1px solid #bae6fd;
+      border-radius: 18px;
+      background: #ecfeff;
+      color: #0e7490;
+      font-size: 16px;
+      line-height: 1.7;
+      text-align: left;
+    }
+    .gallery {
+      display: grid;
+      gap: 28px;
+      margin-top: 32px;
+    }
+    .card {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: var(--card);
+      box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+    }
+    .card-header {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.74);
+    }
+    h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+    a {
+      color: #0e7490;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 8px 13px;
+      border: 1px solid #67e8f9;
+      border-radius: 999px;
+      background: #ecfeff;
+      color: #0e7490;
+      font-size: 14px;
+    }
+    a.button:hover { background: #cffafe; }
+    .frame {
+      padding: 18px;
+      background: #f8fafc;
+    }
+    .frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 18px;
+      background: #f7f3ea;
+    }
+    footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      text-align: center;
+    }
+    @media (max-width: 720px) {
+      main { width: min(100% - 20px, 1180px); padding-top: 24px; }
+      .card-header { display: block; }
+      .actions { justify-content: flex-start; margin-top: 12px; }
+      .frame { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>解读与情绪课程视觉框架</h1>
+      <p class="intro">这里直接显示课程 SVG 图，第一张是按“方案三 → 方案一”重做的专业暗色辉光版总图。把这个文件下载到本地后，用浏览器打开 <strong>preview.html</strong>，就能看到实际画面，不需要看 Markdown 或 SVG 源码。</p>
+      <div class="notice">
+        如果你在 GitHub 里看到的是代码，请不要点 <strong>Raw</strong>；打开本页或下面任意一个 SVG 文件的普通页面即可预览。若在本地双击 SVG 没反应，请右键选择“用浏览器打开”。
+      </div>
+    </header>
+
+    <section class="gallery" aria-label="课程视觉图预览">
+      <article class="card">
+        <div class="card-header">
+          <h2>专业版总图：先方案三，再方案一</h2>
+          <div class="actions"><a class="button" href="05-professional-narrative.svg" target="_blank" rel="noopener">单独打开 SVG</a></div>
+        </div>
+        <div class="frame"><img src="05-professional-narrative.svg" alt="专业暗色辉光风格总图：先用事实层解读层情绪层分层，再进入事实到解读、情绪、暂停、其他可能和新选择的流程" /></div>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <h2>方案一：课程主框架图</h2>
+          <div class="actions"><a class="button" href="01-core-flow.svg" target="_blank" rel="noopener">单独打开 SVG</a></div>
+        </div>
+        <div class="frame"><img src="01-core-flow.svg" alt="方案一：事实、自动解读、情绪、看见解读、选择空间的课程主框架图" /></div>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <h2>方案二：同一句话，不同解读，不同情绪</h2>
+          <div class="actions"><a class="button" href="02-same-fact-branches.svg" target="_blank" rel="noopener">单独打开 SVG</a></div>
+        </div>
+        <div class="frame"><img src="02-same-fact-branches.svg" alt="方案二：同一句话分叉成三种解读和三种情绪" /></div>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <h2>方案三：事实层 / 解读层 / 情绪层</h2>
+          <div class="actions"><a class="button" href="03-layer-model.svg" target="_blank" rel="noopener">单独打开 SVG</a></div>
+        </div>
+        <div class="frame"><img src="03-layer-model.svg" alt="方案三：把事实层、解读层、情绪层拆开的三层模型图" /></div>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <h2>方案四：自动反应路径 vs 有觉察路径</h2>
+          <div class="actions"><a class="button" href="04-two-paths.svg" target="_blank" rel="noopener">单独打开 SVG</a></div>
+        </div>
+        <div class="frame"><img src="04-two-paths.svg" alt="方案四：看不见解读和看见解读的两条路径对照图" /></div>
+      </article>
+    </section>
+
+    <footer>
+      推荐先看专业版总图：它按照你现在确定的叙事，先用方案三解释“解读层”，再用方案一进入课程主流程。
+    </footer>
+  </main>
+</body>
+</html>
