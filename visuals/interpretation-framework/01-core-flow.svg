@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+<defs>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0F172A" flood-opacity="0.13"/></filter>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748B"/></marker>
+</defs>
+<style>
+  text { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', sans-serif; dominant-baseline: middle; }
+  .small { font-size: 19px; fill: #64748B; font-weight: 500; }
+</style>
+<rect width="1200" height="900" fill="#F7F3EA"/>
+<circle cx="1020" cy="110" r="130" fill="#FFE7B8" opacity="0.55"/>
+<circle cx="120" cy="790" r="150" fill="#CFE8FF" opacity="0.5"/>
+<text x="600.0" y="62.0" text-anchor="middle" font-size="34" font-weight="800" fill="#172033">
+<tspan x="600.0" dy="0.0">方案一｜事实 → 解读 → 情绪 → 选择空间</tspan>
+</text>
+<text x="600.0" y="112.0" text-anchor="middle" font-size="20" font-weight="500" fill="#64748B">
+<tspan x="600.0" dy="0.0">课程主框架：看见“这是我的解读”，情绪就不再只有一条路</tspan>
+</text>
+<rect x="430" y="170" width="340" height="76" rx="22" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2" filter="url(#shadow)"/><text x="600.0" y="195.0" text-anchor="middle" font-size="20" font-weight="800" fill="#334155">
+<tspan x="600.0" dy="0.0">① 事实发生</tspan>
+</text><text x="600.0" y="223.0" text-anchor="middle" font-size="18" font-weight="500" fill="#475569">
+<tspan x="600.0" dy="0.0">婆婆说：天气好了，出去玩玩吧</tspan>
+</text><path d="M600.0 254 L600.0 250" stroke="#64748B" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-linecap="round"/><rect x="430" y="262" width="340" height="76" rx="22" fill="#FFF7ED" stroke="#E2E8F0" stroke-width="2" filter="url(#shadow)"/><text x="600.0" y="287.0" text-anchor="middle" font-size="20" font-weight="800" fill="#334155">
+<tspan x="600.0" dy="0.0">② 自动解读</tspan>
+</text><text x="600.0" y="315.0" text-anchor="middle" font-size="18" font-weight="500" fill="#475569">
+<tspan x="600.0" dy="0.0">她是不是嫌弃我？</tspan>
+</text><path d="M600.0 346 L600.0 342" stroke="#64748B" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-linecap="round"/><rect x="430" y="354" width="340" height="76" rx="22" fill="#FEE2E2" stroke="#E2E8F0" stroke-width="2" filter="url(#shadow)"/><text x="600.0" y="379.0" text-anchor="middle" font-size="20" font-weight="800" fill="#334155">
+<tspan x="600.0" dy="0.0">③ 情绪被点燃</tspan>
+</text><text x="600.0" y="407.0" text-anchor="middle" font-size="18" font-weight="500" fill="#475569">
+<tspan x="600.0" dy="0.0">委屈 / 生气 / 防御</tspan>
+</text><path d="M600.0 438 L600.0 434" stroke="#64748B" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-linecap="round"/><rect x="430" y="446" width="340" height="76" rx="22" fill="#FCE7F3" stroke="#E2E8F0" stroke-width="2" filter="url(#shadow)"/><text x="600.0" y="471.0" text-anchor="middle" font-size="20" font-weight="800" fill="#334155">
+<tspan x="600.0" dy="0.0">④ 被情绪带走</tspan>
+</text><text x="600.0" y="499.0" text-anchor="middle" font-size="18" font-weight="500" fill="#475569">
+<tspan x="600.0" dy="0.0">冷淡、反击、生闷气</tspan>
+</text><rect x="330" y="554" width="540" height="92" rx="28" fill="#ECFEFF" stroke="#06B6D4" stroke-width="3" filter="url(#shadow)"/><text x="600" y="587.0" text-anchor="middle" font-size="24" font-weight="800" fill="#0E7490">
+<tspan x="600" dy="0.0">关键暂停：这是事实，还是我的一种解读？</tspan>
+</text><text x="600" y="622.0" text-anchor="middle" font-size="18" font-weight="600" fill="#0F766E">
+<tspan x="600" dy="0.0">看见它只是“解读”，选择空间就出现了</tspan>
+</text><path d="M600 530 L600 544" stroke="#06B6D4" stroke-width="4" fill="none" marker-end="url(#arrow)" stroke-linecap="round"/><path d="M600 646 L310 687" stroke="#06B6D4" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-linecap="round"/><rect x="160" y="699" width="300" height="98" rx="22" fill="#F0FDF4" stroke="#86EFAC" stroke-width="2" filter="url(#shadow)"/><text x="310" y="721.8" text-anchor="middle" font-size="20" font-weight="800" fill="#166534">
+<tspan x="310" dy="0.0">可能解读 A</tspan>
+<tspan x="310" dy="26.4">她是在关心我</tspan>
+</text><text x="310" y="772.0" text-anchor="middle" font-size="20" font-weight="700" fill="#15803D">
+<tspan x="310" dy="0.0">温暖</tspan>
+</text><path d="M600 646 L580 687" stroke="#06B6D4" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-linecap="round"/><rect x="430" y="699" width="300" height="98" rx="22" fill="#F0FDF4" stroke="#86EFAC" stroke-width="2" filter="url(#shadow)"/><text x="580" y="721.8" text-anchor="middle" font-size="20" font-weight="800" fill="#166534">
+<tspan x="580" dy="0.0">可能解读 B</tspan>
+<tspan x="580" dy="26.4">她想让我放松</tspan>
+</text><text x="580" y="772.0" text-anchor="middle" font-size="20" font-weight="700" fill="#15803D">
+<tspan x="580" dy="0.0">轻松</tspan>
+</text><path d="M600 646 L850 687" stroke="#06B6D4" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-linecap="round"/><rect x="700" y="699" width="300" height="98" rx="22" fill="#F0FDF4" stroke="#86EFAC" stroke-width="2" filter="url(#shadow)"/><text x="850" y="721.8" text-anchor="middle" font-size="20" font-weight="800" fill="#166534">
+<tspan x="850" dy="0.0">可能解读 C</tspan>
+<tspan x="850" dy="26.4">她表达方式不好</tspan>
+</text><text x="850" y="772.0" text-anchor="middle" font-size="20" font-weight="700" fill="#15803D">
+<tspan x="850" dy="0.0">没那么受伤</tspan>
+</text><text x="600" y="830.0" text-anchor="middle" font-size="28" font-weight="800" fill="#172033">
+<tspan x="600" dy="0.0">结果：情绪松动，我有了新的回应选择</tspan>
+</text><path d="M600 804 L600 795" stroke="#22C55E" stroke-width="4" fill="none" marker-end="url(#arrow)" stroke-linecap="round"/></svg>

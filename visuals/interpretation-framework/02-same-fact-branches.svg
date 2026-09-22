@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+<defs>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0F172A" flood-opacity="0.13"/></filter>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748B"/></marker>
+</defs>
+<style>
+  text { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', sans-serif; dominant-baseline: middle; }
+  .small { font-size: 19px; fill: #64748B; font-weight: 500; }
+</style>
+<rect width="1200" height="900" fill="#F7F3EA"/>
+<circle cx="1020" cy="110" r="130" fill="#FFE7B8" opacity="0.55"/>
+<circle cx="120" cy="790" r="150" fill="#CFE8FF" opacity="0.5"/>
+<text x="600.0" y="62.0" text-anchor="middle" font-size="34" font-weight="800" fill="#172033">
+<tspan x="600.0" dy="0.0">方案二｜同一句话，不同解读，不同情绪</tspan>
+</text>
+<text x="600.0" y="112.0" text-anchor="middle" font-size="20" font-weight="500" fill="#64748B">
+<tspan x="600.0" dy="0.0">用一个生活例子，让学员直观看见：情绪跟着“解读”走</tspan>
+</text>
+<rect x="290" y="165" width="620" height="95" rx="22" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2" filter="url(#shadow)"/><text x="600" y="198.0" text-anchor="middle" font-size="23" font-weight="800" fill="#0F172A">
+<tspan x="600" dy="0.0">事实</tspan>
+</text><text x="600" y="232.0" text-anchor="middle" font-size="24" font-weight="600" fill="#334155">
+<tspan x="600" dy="0.0">婆婆说：“过两天天气好了，你出去玩玩吧”</tspan>
+</text><path d="M600 270 L600 330" stroke="#64748B" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-linecap="round"/><text x="600" y="315.0" text-anchor="middle" font-size="20" font-weight="600" fill="#64748B">
+<tspan x="600" dy="0.0">这句话本身只是事实，意义来自我的解读</tspan>
+</text><path d="M600 340 L240 405" stroke="#16A34A" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-linecap="round"/><rect x="90" y="420" width="300" height="118" rx="24" fill="#DCFCE7" stroke="#16A34A" stroke-width="2" filter="url(#shadow)"/><text x="240" y="450.0" text-anchor="middle" font-size="20" font-weight="800" fill="#16A34A">
+<tspan x="240" dy="0.0">解读 1</tspan>
+</text><text x="240" y="492.0" text-anchor="middle" font-size="25" font-weight="800" fill="#172033">
+<tspan x="240" dy="0.0">她在关心我</tspan>
+</text><rect x="90" y="575" width="300" height="82" rx="22" fill="#FFFFFF" stroke="#16A34A" stroke-width="2" filter="url(#shadow)"/><text x="240" y="604.0" text-anchor="middle" font-size="22" font-weight="800" fill="#16A34A">
+<tspan x="240" dy="0.0">温暖 / 被照顾</tspan>
+</text><text x="240" y="636.0" text-anchor="middle" font-size="18" font-weight="600" fill="#475569">
+<tspan x="240" dy="0.0">愿意回应</tspan>
+</text><path d="M240 544 L240 568" stroke="#16A34A" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-linecap="round"/><path d="M600 340 L600 405" stroke="#DC2626" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-linecap="round"/><rect x="450" y="420" width="300" height="118" rx="24" fill="#FEE2E2" stroke="#DC2626" stroke-width="2" filter="url(#shadow)"/><text x="600" y="450.0" text-anchor="middle" font-size="20" font-weight="800" fill="#DC2626">
+<tspan x="600" dy="0.0">解读 2</tspan>
+</text><text x="600" y="492.0" text-anchor="middle" font-size="25" font-weight="800" fill="#172033">
+<tspan x="600" dy="0.0">她嫌弃我</tspan>
+</text><rect x="450" y="575" width="300" height="82" rx="22" fill="#FFFFFF" stroke="#DC2626" stroke-width="2" filter="url(#shadow)"/><text x="600" y="604.0" text-anchor="middle" font-size="22" font-weight="800" fill="#DC2626">
+<tspan x="600" dy="0.0">委屈 / 愤怒</tspan>
+</text><text x="600" y="636.0" text-anchor="middle" font-size="18" font-weight="600" fill="#475569">
+<tspan x="600" dy="0.0">冷淡或生闷气</tspan>
+</text><path d="M600 544 L600 568" stroke="#DC2626" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-linecap="round"/><path d="M600 340 L960 405" stroke="#D97706" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-linecap="round"/><rect x="810" y="420" width="300" height="118" rx="24" fill="#FEF3C7" stroke="#D97706" stroke-width="2" filter="url(#shadow)"/><text x="960" y="450.0" text-anchor="middle" font-size="20" font-weight="800" fill="#D97706">
+<tspan x="960" dy="0.0">解读 3</tspan>
+</text><text x="960" y="492.0" text-anchor="middle" font-size="25" font-weight="800" fill="#172033">
+<tspan x="960" dy="0.0">她讽刺我爱玩</tspan>
+</text><rect x="810" y="575" width="300" height="82" rx="22" fill="#FFFFFF" stroke="#D97706" stroke-width="2" filter="url(#shadow)"/><text x="960" y="604.0" text-anchor="middle" font-size="22" font-weight="800" fill="#D97706">
+<tspan x="960" dy="0.0">羞耻 / 防御</tspan>
+</text><text x="960" y="636.0" text-anchor="middle" font-size="18" font-weight="600" fill="#475569">
+<tspan x="960" dy="0.0">反击或解释</tspan>
+</text><path d="M960 544 L960 568" stroke="#D97706" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-linecap="round"/><rect x="230" y="725" width="740" height="82" rx="28" fill="#ECFEFF" stroke="#06B6D4" stroke-width="3" filter="url(#shadow)"/><text x="600" y="755.0" text-anchor="middle" font-size="24" font-weight="800" fill="#0E7490">
+<tspan x="600" dy="0.0">练习重点：不是先判断哪个一定对，而是先看见“我正在解读”。</tspan>
+</text><text x="600" y="790.0" text-anchor="middle" font-size="20" font-weight="700" fill="#0F766E">
+<tspan x="600" dy="0.0">看见之后，情绪才有机会松动。</tspan>
+</text></svg>
